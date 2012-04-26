@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tree", "Tree\Tree.csproj", "{DDC52A4D-3513-4824-B30B-450A43052C2D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D603360F-2790-4F96-804C-2A526B6B88A8}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "TreeInstaller", "TreeInstaller\TreeInstaller.vdproj", "{7B34B341-292D-47CD-B2BE-7914FD03C5F1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DDC52A4D-3513-4824-B30B-450A43052C2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDC52A4D-3513-4824-B30B-450A43052C2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDC52A4D-3513-4824-B30B-450A43052C2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDC52A4D-3513-4824-B30B-450A43052C2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B34B341-292D-47CD-B2BE-7914FD03C5F1}.Debug|Any CPU.ActiveCfg = Debug
+		{7B34B341-292D-47CD-B2BE-7914FD03C5F1}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

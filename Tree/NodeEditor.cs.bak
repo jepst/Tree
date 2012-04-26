@@ -1,0 +1,528 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Windows.Forms;
+using System.Drawing;
+
+namespace Tree
+{
+    public class NodeEditor : UserControl
+    {
+        private FlowLayoutPanel flowLayoutPanel;
+        private GroupBox labelEditGroupBox;
+        private GroupBox styleGroupBox;
+        private RichTextBox2 labelEditRichEditBox;
+        private List<Elem> m_selected;
+        private GroupBox lexEditGroupBox;
+        private RichTextBox2 lexEditRichEditBox;
+        private GroupBox nodeOperationsGroupBox;
+        private Button createParentButton;
+        private Button createChildButton;
+        private Button deleteButton;
+        private Panel introTextPanel;
+        private Label introTextLabel;
+        private CheckBox triangleCheckBox;
+        private Button colorButton;
+        private Button fontButton;
+        private SyntaxTreeViewer m_stv;
+
+        public NodeEditor()
+        {
+            InitializeComponent();
+            labelEditRichEditBox.ContextMenuStrip = new RichTextContextMenuStrip(labelEditRichEditBox);
+            lexEditRichEditBox.ContextMenuStrip = new RichTextContextMenuStrip(lexEditRichEditBox);
+
+            ItemSelect(new List<Elem>(), null); 
+            /* This seems dangerous, but it works for now.
+             * in fact I'm not a real fan of the way I'm 
+             * pushing these references around, but I'm not
+             * sure how else to make a less tight binding
+             * between the controls
+             */
+        }
+
+        private void Plus(Control c)
+        {
+            c.Show();
+        }
+
+        private void Minus(Control c)
+        {
+            c.Hide();
+        }
+
+        public RichTextBox2 GetEditBox(bool lexical)
+        {
+            if (lexical)
+                return lexEditRichEditBox;
+            else
+                return labelEditRichEditBox;
+        }
+
+        public void ItemSelect(List<Elem> selected,SyntaxTreeViewer stv)
+        {
+            flowLayoutPanel.SuspendLayout();
+            m_selected = selected;
+            m_stv = stv;
+
+            foreach (Control c in flowLayoutPanel.Controls)
+                Minus(c);
+
+            labelEditRichEditBox.Reset();
+            lexEditRichEditBox.Reset();
+
+            ItemSelectNodeEdit();
+            ItemSelectLexEdit();
+            ItemSelectStyle();
+            ItemSelectNodeActions();
+            ItemSelectIntroText();
+            flowLayoutPanel.ResumeLayout(false);
+            flowLayoutPanel.PerformLayout();
+        }
+
+        public void ItemSelectStyle()
+        {
+            if (m_selected.Count > 0)
+            {
+                Plus(styleGroupBox);
+            }
+        }
+
+        public void ItemSelectNodeActions()
+        {
+            /*todo: allow multi-delete?*/
+            if (m_selected.Count == 1)
+            {
+                Elem elem = m_selected[0];
+                createChildButton.Enabled = elem.GetNode().CanAddChildHere();
+                deleteButton.Enabled = elem.GetNode().CanBeDeleted();
+                Plus(nodeOperationsGroupBox);
+            }
+        }
+
+        public void ItemSelectLexEdit()
+        {
+            if (m_selected.Count == 1)
+            {
+                if (!m_selected[0].GetNode().HasChildren())
+                {
+                    if (m_selected[0].Parent == null)
+                    {
+                        triangleCheckBox.Checked = false;
+                        triangleCheckBox.Enabled = false;
+                    }
+                    else
+                    {
+                        triangleCheckBox.Checked = m_selected[0].GetNode().GetParentConnectorStyle() == ConnectorStyle.Triangle;
+                        triangleCheckBox.Enabled = true;
+                    }
+
+                    lexEditRichEditBox.Reset();
+                    lexEditRichEditBox.Rtf = m_selected[0].GetNode().GetLexicalRtf();
+                    if (lexEditRichEditBox.TextLength==0)
+                    {
+                        lexEditRichEditBox.SelectAll();
+                        lexEditRichEditBox.ForeColor = m_stv.GetCurrentOptions().lexicalfont.Color;
+                        lexEditRichEditBox.Font = m_stv.GetCurrentOptions().lexicalfont.Font;
+                        lexEditRichEditBox.SelectionColor = m_stv.GetCurrentOptions().lexicalfont.Color;
+                        lexEditRichEditBox.SelectionFont = m_stv.GetCurrentOptions().lexicalfont.Font ;
+
+                    }
+                    lexEditRichEditBox.Modified = false;
+                    Plus(lexEditGroupBox);
+                }
+            }
+        }
+
+        public void ItemSelectNodeEdit()
+        {
+            if (m_selected.Count == 1)
+            {
+                labelEditRichEditBox.Reset();
+                labelEditRichEditBox.Rtf = m_selected[0].GetNode().GetLabelRtf();
+                if (lexEditRichEditBox.TextLength == 0)
+                {
+                    labelEditRichEditBox.SelectAll();
+                    labelEditRichEditBox.ForeColor = m_stv.GetCurrentOptions().labelfont.Color;
+                    lexEditRichEditBox.Font = m_stv.GetCurrentOptions().lexicalfont.Font;
+
+                    labelEditRichEditBox.SelectionColor = m_stv.GetCurrentOptions().labelfont.Color;
+                    labelEditRichEditBox.SelectionFont = m_stv.GetCurrentOptions().labelfont.Font;
+                }
+                labelEditRichEditBox.Modified = false;
+                Plus(labelEditGroupBox);
+                labelEditRichEditBox.Focus();
+                labelEditRichEditBox.SelectAll();
+            }
+        }
+
+        public void ItemSelectIntroText()
+        {
+            if (m_selected.Count == 0)
+            {
+                Plus(introTextPanel);
+            }
+        }
+
+        private void InitializeComponent()
+        {
+            this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.labelEditGroupBox = new System.Windows.Forms.GroupBox();
+            this.lexEditGroupBox = new System.Windows.Forms.GroupBox();
+            this.triangleCheckBox = new System.Windows.Forms.CheckBox();
+            this.styleGroupBox = new System.Windows.Forms.GroupBox();
+            this.colorButton = new System.Windows.Forms.Button();
+            this.fontButton = new System.Windows.Forms.Button();
+            this.nodeOperationsGroupBox = new System.Windows.Forms.GroupBox();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.createParentButton = new System.Windows.Forms.Button();
+            this.createChildButton = new System.Windows.Forms.Button();
+            this.introTextPanel = new System.Windows.Forms.Panel();
+            this.introTextLabel = new System.Windows.Forms.Label();
+            this.labelEditRichEditBox = new Tree.RichTextBox2();
+            this.lexEditRichEditBox = new Tree.RichTextBox2();
+            this.flowLayoutPanel.SuspendLayout();
+            this.labelEditGroupBox.SuspendLayout();
+            this.lexEditGroupBox.SuspendLayout();
+            this.styleGroupBox.SuspendLayout();
+            this.nodeOperationsGroupBox.SuspendLayout();
+            this.introTextPanel.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // flowLayoutPanel
+            // 
+            this.flowLayoutPanel.Controls.Add(this.labelEditGroupBox);
+            this.flowLayoutPanel.Controls.Add(this.lexEditGroupBox);
+            this.flowLayoutPanel.Controls.Add(this.styleGroupBox);
+            this.flowLayoutPanel.Controls.Add(this.nodeOperationsGroupBox);
+            this.flowLayoutPanel.Controls.Add(this.introTextPanel);
+            this.flowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel.Name = "flowLayoutPanel";
+            this.flowLayoutPanel.Size = new System.Drawing.Size(183, 551);
+            this.flowLayoutPanel.TabIndex = 0;
+            this.flowLayoutPanel.WrapContents = false;
+            this.flowLayoutPanel.Layout += new System.Windows.Forms.LayoutEventHandler(this.flowLayoutPanel1_Layout);
+            // 
+            // labelEditGroupBox
+            // 
+            this.labelEditGroupBox.Controls.Add(this.labelEditRichEditBox);
+            this.labelEditGroupBox.Location = new System.Drawing.Point(3, 3);
+            this.labelEditGroupBox.Name = "labelEditGroupBox";
+            this.labelEditGroupBox.Size = new System.Drawing.Size(175, 64);
+            this.labelEditGroupBox.TabIndex = 1;
+            this.labelEditGroupBox.TabStop = false;
+            this.labelEditGroupBox.Text = "Label";
+            this.labelEditGroupBox.Visible = false;
+            // 
+            // lexEditGroupBox
+            // 
+            this.lexEditGroupBox.Controls.Add(this.triangleCheckBox);
+            this.lexEditGroupBox.Controls.Add(this.lexEditRichEditBox);
+            this.lexEditGroupBox.Location = new System.Drawing.Point(3, 73);
+            this.lexEditGroupBox.Name = "lexEditGroupBox";
+            this.lexEditGroupBox.Size = new System.Drawing.Size(175, 64);
+            this.lexEditGroupBox.TabIndex = 2;
+            this.lexEditGroupBox.TabStop = false;
+            this.lexEditGroupBox.Text = "Lexical item";
+            this.lexEditGroupBox.Visible = false;
+            // 
+            // triangleCheckBox
+            // 
+            this.triangleCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.triangleCheckBox.Dock = System.Windows.Forms.DockStyle.Right;
+            this.triangleCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.triangleCheckBox.Location = new System.Drawing.Point(145, 18);
+            this.triangleCheckBox.Name = "triangleCheckBox";
+            this.triangleCheckBox.Size = new System.Drawing.Size(27, 43);
+            this.triangleCheckBox.TabIndex = 1;
+            this.triangleCheckBox.Text = "/\\";
+            this.triangleCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.triangleCheckBox.UseVisualStyleBackColor = true;
+            this.triangleCheckBox.CheckedChanged += new System.EventHandler(this.triangleCheckBox_CheckedChanged);
+            // 
+            // styleGroupBox
+            // 
+            this.styleGroupBox.Controls.Add(this.colorButton);
+            this.styleGroupBox.Controls.Add(this.fontButton);
+            this.styleGroupBox.Location = new System.Drawing.Point(3, 143);
+            this.styleGroupBox.Name = "styleGroupBox";
+            this.styleGroupBox.Size = new System.Drawing.Size(175, 106);
+            this.styleGroupBox.TabIndex = 3;
+            this.styleGroupBox.TabStop = false;
+            this.styleGroupBox.Text = "Style";
+            this.styleGroupBox.Visible = false;
+            // 
+            // colorButton
+            // 
+            this.colorButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.colorButton.Location = new System.Drawing.Point(6, 50);
+            this.colorButton.Name = "colorButton";
+            this.colorButton.Size = new System.Drawing.Size(75, 23);
+            this.colorButton.TabIndex = 1;
+            this.colorButton.Text = "C&olor...";
+            this.colorButton.UseVisualStyleBackColor = true;
+            this.colorButton.Click += new System.EventHandler(this.colorButton_Click);
+            // 
+            // fontButton
+            // 
+            this.fontButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.fontButton.Location = new System.Drawing.Point(6, 21);
+            this.fontButton.Name = "fontButton";
+            this.fontButton.Size = new System.Drawing.Size(75, 23);
+            this.fontButton.TabIndex = 0;
+            this.fontButton.Text = "Fo&nt...";
+            this.fontButton.UseVisualStyleBackColor = true;
+            this.fontButton.Click += new System.EventHandler(this.fontButton_Click);
+            // 
+            // nodeOperationsGroupBox
+            // 
+            this.nodeOperationsGroupBox.Controls.Add(this.deleteButton);
+            this.nodeOperationsGroupBox.Controls.Add(this.createParentButton);
+            this.nodeOperationsGroupBox.Controls.Add(this.createChildButton);
+            this.nodeOperationsGroupBox.Location = new System.Drawing.Point(3, 255);
+            this.nodeOperationsGroupBox.Name = "nodeOperationsGroupBox";
+            this.nodeOperationsGroupBox.Size = new System.Drawing.Size(175, 106);
+            this.nodeOperationsGroupBox.TabIndex = 4;
+            this.nodeOperationsGroupBox.TabStop = false;
+            this.nodeOperationsGroupBox.Text = "Node";
+            this.nodeOperationsGroupBox.Visible = false;
+            // 
+            // deleteButton
+            // 
+            this.deleteButton.AutoSize = true;
+            this.deleteButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.deleteButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.deleteButton.Location = new System.Drawing.Point(3, 72);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(169, 27);
+            this.deleteButton.TabIndex = 2;
+            this.deleteButton.Text = "&Delete";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            // 
+            // createParentButton
+            // 
+            this.createParentButton.AutoSize = true;
+            this.createParentButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.createParentButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.createParentButton.Location = new System.Drawing.Point(3, 45);
+            this.createParentButton.Margin = new System.Windows.Forms.Padding(10);
+            this.createParentButton.Name = "createParentButton";
+            this.createParentButton.Size = new System.Drawing.Size(169, 27);
+            this.createParentButton.TabIndex = 1;
+            this.createParentButton.Text = "Insert &parent";
+            this.createParentButton.UseVisualStyleBackColor = true;
+            this.createParentButton.Click += new System.EventHandler(this.createParentButton_Click);
+            // 
+            // createChildButton
+            // 
+            this.createChildButton.AutoSize = true;
+            this.createChildButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.createChildButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.createChildButton.Location = new System.Drawing.Point(3, 18);
+            this.createChildButton.Margin = new System.Windows.Forms.Padding(10);
+            this.createChildButton.Name = "createChildButton";
+            this.createChildButton.Size = new System.Drawing.Size(169, 27);
+            this.createChildButton.TabIndex = 0;
+            this.createChildButton.Text = "Insert &child";
+            this.createChildButton.UseVisualStyleBackColor = true;
+            this.createChildButton.Click += new System.EventHandler(this.createChildButton_Click);
+            // 
+            // introTextPanel
+            // 
+            this.introTextPanel.Controls.Add(this.introTextLabel);
+            this.introTextPanel.Location = new System.Drawing.Point(3, 367);
+            this.introTextPanel.Name = "introTextPanel";
+            this.introTextPanel.Size = new System.Drawing.Size(175, 121);
+            this.introTextPanel.TabIndex = 4;
+            this.introTextPanel.Visible = false;
+            // 
+            // introTextLabel
+            // 
+            this.introTextLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.introTextLabel.Location = new System.Drawing.Point(0, 0);
+            this.introTextLabel.Name = "introTextLabel";
+            this.introTextLabel.Size = new System.Drawing.Size(175, 121);
+            this.introTextLabel.TabIndex = 0;
+            this.introTextLabel.Text = "Click on a node in the window on the left to edit the tree.";
+            this.introTextLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelEditRichEditBox
+            // 
+            this.labelEditRichEditBox.DetectUrls = false;
+            this.labelEditRichEditBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelEditRichEditBox.Location = new System.Drawing.Point(3, 18);
+            this.labelEditRichEditBox.MaxLength = 1024;
+            this.labelEditRichEditBox.Name = "labelEditRichEditBox";
+            this.labelEditRichEditBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.labelEditRichEditBox.Size = new System.Drawing.Size(169, 43);
+            this.labelEditRichEditBox.TabIndex = 0;
+            this.labelEditRichEditBox.Text = "";
+            this.labelEditRichEditBox.WordWrap = false;
+            this.labelEditRichEditBox.TextChanged += new System.EventHandler(this.labelEditRichEditBox_TextChanged);
+            // 
+            // lexEditRichEditBox
+            // 
+            this.lexEditRichEditBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lexEditRichEditBox.DetectUrls = false;
+            this.lexEditRichEditBox.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.lexEditRichEditBox.Location = new System.Drawing.Point(3, 18);
+            this.lexEditRichEditBox.MaxLength = 1024;
+            this.lexEditRichEditBox.Multiline = false;
+            this.lexEditRichEditBox.Name = "lexEditRichEditBox";
+            this.lexEditRichEditBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.lexEditRichEditBox.Size = new System.Drawing.Size(133, 43);
+            this.lexEditRichEditBox.TabIndex = 0;
+            this.lexEditRichEditBox.Text = "";
+            this.lexEditRichEditBox.WordWrap = false;
+            this.lexEditRichEditBox.TextChanged += new System.EventHandler(this.lexEditRichEditBox_TextChanged);
+            // 
+            // NodeEditor
+            // 
+            this.Controls.Add(this.flowLayoutPanel);
+            this.Name = "NodeEditor";
+            this.Size = new System.Drawing.Size(183, 551);
+            this.flowLayoutPanel.ResumeLayout(false);
+            this.labelEditGroupBox.ResumeLayout(false);
+            this.lexEditGroupBox.ResumeLayout(false);
+            this.styleGroupBox.ResumeLayout(false);
+            this.nodeOperationsGroupBox.ResumeLayout(false);
+            this.nodeOperationsGroupBox.PerformLayout();
+            this.introTextPanel.ResumeLayout(false);
+            this.ResumeLayout(false);
+
+        }
+
+        private void flowLayoutPanel1_Layout(object sender, LayoutEventArgs e)
+        {
+            flowLayoutPanel.SuspendLayout();
+            foreach (Control n in flowLayoutPanel.Controls)
+            {
+                n.Width = this.flowLayoutPanel.Width -
+                    this.flowLayoutPanel.Margin.Left
+                    - this.flowLayoutPanel.Margin.Right;
+
+           }
+           flowLayoutPanel.ResumeLayout(true);
+        }
+
+        private void labelEditRichEditBox_TextChanged(object sender, EventArgs e)
+        {
+            if (m_selected.Count == 1 && labelEditRichEditBox.Visible)
+            {
+                Elem elem = m_selected[0];
+                Node node = elem.GetNode();
+                string labelRtf = labelEditRichEditBox.Rtf;
+                string labelText = labelEditRichEditBox.Text;
+                if (labelEditRichEditBox.Modified && node.GetLabelRtf() != labelRtf)
+                {
+                    UpdateNode();
+                    m_stv.UpdateEverything(true);
+                }
+            }
+        }
+
+        private void lexEditRichEditBox_TextChanged(object sender, EventArgs e)
+        {
+            if (m_selected.Count == 1 && lexEditRichEditBox.Visible)
+            {
+                Elem elem = m_selected[0];
+                Node node = elem.GetNode();
+                string lexRtf = lexEditRichEditBox.Rtf;
+                string lexText = lexEditRichEditBox.Text;
+                if (lexEditRichEditBox.Modified && node.GetLexicalRtf() != lexRtf)
+                {
+                    UpdateNode();
+                    ItemSelectNodeActions();
+                    m_stv.UpdateEverything(true);
+                }
+            }
+
+        }
+
+        private void triangleCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (m_selected.Count == 1 && labelEditRichEditBox.Visible)
+            {
+                if (m_selected[0].Parent != null)
+                {
+                    m_selected[0].GetNode().SetParentConnectorStyle(triangleCheckBox.Checked?
+                        ConnectorStyle.Triangle:ConnectorStyle.Line);
+                    ItemSelectNodeActions();
+                    lexEditRichEditBox.Focus();
+                    m_stv.UpdateEverything(true);
+                }
+            }
+        }
+
+
+        private void createChildButton_Click(object sender, EventArgs e)
+        {
+            m_stv.basicMenuStripAddChild_Click(sender,e);
+        }
+
+        private void createParentButton_Click(object sender, EventArgs e)
+        {
+            m_stv.basicMenuStripAddParent_Click(sender, e);
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            m_stv.basicMenuStripDeleteItem_Click(sender, e);
+        }
+        private void fontButton_Click(object sender, EventArgs e)
+        {
+            if (m_selected.Count < 1)
+                return;
+
+            SelectionProxy sp = new SelectionProxy(m_stv, this, m_selected);
+
+            Font theFont = sp.Font;
+
+            theFont = MainWindow.GeneralPickFont(this, theFont);
+            if (theFont == null)
+                return;
+
+            sp.Font = theFont;
+
+            UpdateNode();
+            m_stv.UpdateEverything(true);
+        }
+
+        private void colorButton_Click(object sender, EventArgs e)
+        {
+            if (m_selected.Count < 1)
+                return;
+
+            SelectionProxy sp = new SelectionProxy(m_stv, this, m_selected);
+
+            Color theColor = sp.Color;
+
+            theColor = MainWindow.GeneralPickColor(this, theColor);
+            if (theColor == Color.Empty)
+                return;
+
+            sp.Color = theColor;
+
+            UpdateNode();
+            m_stv.UpdateEverything(true);
+
+        }
+
+        private void UpdateNode()
+        {
+            if (m_selected.Count == 1)
+            {
+                Node node = m_selected[0].GetNode();
+                node.SetLabelRtfAndText(labelEditRichEditBox.Rtf, labelEditRichEditBox.Text);
+                node.SetLexicalRtfAndText(lexEditRichEditBox.Rtf, lexEditRichEditBox.Text);
+            }
+        }
+
+
+    }
+}

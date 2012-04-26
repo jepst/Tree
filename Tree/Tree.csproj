@@ -1,0 +1,227 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DDC52A4D-3513-4824-B30B-450A43052C2D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tree</RootNamespace>
+    <AssemblyName>Tree</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FeedbackForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FeedbackForm.Designer.cs">
+      <DependentUpon>FeedbackForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HintBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HintBox.Designer.cs">
+      <DependentUpon>HintBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TextDialogBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TextDialogBox.Designer.cs">
+      <DependentUpon>TextDialogBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LineDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LineDialog.Designer.cs">
+      <DependentUpon>LineDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBox.Designer.cs">
+      <DependentUpon>InputBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsProxy.cs" />
+    <Compile Include="MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NodeEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AboutBox.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FeedbackForm.resx">
+      <DependentUpon>FeedbackForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HintBox.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>HintBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TextDialogBox.resx">
+      <DependentUpon>TextDialogBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LineDialog.resx">
+      <DependentUpon>LineDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBox.resx">
+      <DependentUpon>InputBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainWindow.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NodeEditor.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SpacingDialog.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SpacingDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SyntaxTreeViewer.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SyntaxTreeViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TracePane.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TracePane.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="RichTextBox2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="SpacingDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SpacingDialog.Designer.cs">
+      <DependentUpon>SpacingDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SyntaxTreeViewer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SyntaxTree.cs" />
+    <Compile Include="TracePane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TracePane.Designer.cs">
+      <DependentUpon>TracePane.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fontBold.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fontItalic.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fontUnderline.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fontStrikeout.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fontSubscript.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fontSuperscript.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\traceNew.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\traceDelete.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\traceEdit.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nodeInsertParent.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nodeInsertChild.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nodeDelete.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\treeLogo.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\treeLogoPng.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MainIcon.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
