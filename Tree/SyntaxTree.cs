@@ -288,7 +288,7 @@ namespace Tree
         private Decoration m_decoration;
         private NodeDisplayType m_displaytype;
 
-        public const int MAX_CHILDREN = 3;
+        public const int MAX_CHILDREN = 20;
 
         public Decoration Decoration
         {

@@ -26,7 +26,9 @@ namespace Tree
         {
             InitializeComponent();
             this.nodeEditor.SetSTV(syntaxTreeViewer);
-
+#if !DEBUG
+            this.feedbackToolStripMenuItem.Enabled = false;
+#endif
             BlankDocument();
 
             UpdateGUI();
