@@ -270,7 +270,7 @@ namespace Tree
             this.lexEditGroupBox.Size = new System.Drawing.Size(175, 64);
             this.lexEditGroupBox.TabIndex = 2;
             this.lexEditGroupBox.TabStop = false;
-            this.lexEditGroupBox.Text = "Lexical item";
+            this.lexEditGroupBox.Text = "&Lexical item";
             this.lexEditGroupBox.Enter += new System.EventHandler(this.lexEditGroupBox_Enter);
             // 
             // tableLayoutPanel1
@@ -344,7 +344,7 @@ namespace Tree
             this.createParentButton,
             this.deleteButton});
             this.nodeToolStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            this.nodeToolStrip.Location = new System.Drawing.Point(3, 22);
+            this.nodeToolStrip.Location = new System.Drawing.Point(3, 18);
             this.nodeToolStrip.Name = "nodeToolStrip";
             this.nodeToolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.nodeToolStrip.Size = new System.Drawing.Size(169, 31);
