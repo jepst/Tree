@@ -1357,8 +1357,6 @@ namespace Tree
                               "Artist:\n"+
                               "Ian Schlaepfer\n"+
                               "\n" +
-                              "Beta testers:\nYOU!\n"+
-                              "\n"+
                               "Additional thanks to:\nZofia Stankiewicz";
 
             using (TextDialogBox tdb = new TextDialogBox())

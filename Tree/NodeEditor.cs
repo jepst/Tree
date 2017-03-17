@@ -17,7 +17,6 @@ namespace Tree
         private GroupBox lexEditGroupBox;
         private RichTextBox2 lexEditRichEditBox;
         private GroupBox nodeOperationsGroupBox;
-        private CheckBox triangleCheckBox;
         private SyntaxTreeViewer m_stv;
         public bool lastTouchedWasLex;
         private bool updating;
@@ -28,6 +27,8 @@ namespace Tree
         private ToolStripButton createChildButton;
         private ToolStripButton createParentButton;
         private ToolStripButton deleteButton;
+        private TableLayoutPanel tableLayoutPanel1;
+        private CheckBox triangleCheckBox;
         private bool alreadyChanged;
 
         public NodeEditor()
@@ -193,6 +194,7 @@ namespace Tree
             this.labelEditGroupBox = new System.Windows.Forms.GroupBox();
             this.labelEditRichEditBox = new Tree.RichTextBox2();
             this.lexEditGroupBox = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.triangleCheckBox = new System.Windows.Forms.CheckBox();
             this.lexEditRichEditBox = new Tree.RichTextBox2();
             this.nodeOperationsGroupBox = new System.Windows.Forms.GroupBox();
@@ -205,6 +207,7 @@ namespace Tree
             this.tableLayoutPanel.SuspendLayout();
             this.labelEditGroupBox.SuspendLayout();
             this.lexEditGroupBox.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.nodeOperationsGroupBox.SuspendLayout();
             this.nodeToolStrip.SuspendLayout();
             this.traceGroupBox.SuspendLayout();
@@ -245,11 +248,11 @@ namespace Tree
             this.labelEditRichEditBox.DetectUrls = false;
             this.labelEditRichEditBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelEditRichEditBox.Italic = Tree.Ternary.No;
-            this.labelEditRichEditBox.Location = new System.Drawing.Point(3, 18);
+            this.labelEditRichEditBox.Location = new System.Drawing.Point(3, 22);
             this.labelEditRichEditBox.MaxLength = 1024;
             this.labelEditRichEditBox.Name = "labelEditRichEditBox";
             this.labelEditRichEditBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.labelEditRichEditBox.Size = new System.Drawing.Size(169, 44);
+            this.labelEditRichEditBox.Size = new System.Drawing.Size(169, 40);
             this.labelEditRichEditBox.Subscript = Tree.Ternary.No;
             this.labelEditRichEditBox.Superscript = Tree.Ternary.No;
             this.labelEditRichEditBox.TabIndex = 0;
@@ -261,24 +264,41 @@ namespace Tree
             // 
             // lexEditGroupBox
             // 
-            this.lexEditGroupBox.Controls.Add(this.triangleCheckBox);
-            this.lexEditGroupBox.Controls.Add(this.lexEditRichEditBox);
+            this.lexEditGroupBox.Controls.Add(this.tableLayoutPanel1);
             this.lexEditGroupBox.Location = new System.Drawing.Point(3, 74);
             this.lexEditGroupBox.Name = "lexEditGroupBox";
             this.lexEditGroupBox.Size = new System.Drawing.Size(175, 64);
             this.lexEditGroupBox.TabIndex = 2;
             this.lexEditGroupBox.TabStop = false;
             this.lexEditGroupBox.Text = "Lexical item";
+            this.lexEditGroupBox.Enter += new System.EventHandler(this.lexEditGroupBox_Enter);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.Controls.Add(this.triangleCheckBox, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lexEditRichEditBox, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 22);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(169, 39);
+            this.tableLayoutPanel1.TabIndex = 2;
+            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // triangleCheckBox
             // 
             this.triangleCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
-            this.triangleCheckBox.Dock = System.Windows.Forms.DockStyle.Right;
+            this.triangleCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.triangleCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.triangleCheckBox.Location = new System.Drawing.Point(145, 18);
+            this.triangleCheckBox.Location = new System.Drawing.Point(132, 3);
             this.triangleCheckBox.Name = "triangleCheckBox";
-            this.triangleCheckBox.Size = new System.Drawing.Size(27, 43);
-            this.triangleCheckBox.TabIndex = 1;
+            this.triangleCheckBox.Size = new System.Drawing.Size(34, 33);
+            this.triangleCheckBox.TabIndex = 2;
             this.triangleCheckBox.Text = "/\\";
             this.triangleCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.triangleCheckBox.UseVisualStyleBackColor = true;
@@ -286,17 +306,16 @@ namespace Tree
             // 
             // lexEditRichEditBox
             // 
-            this.lexEditRichEditBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
             this.lexEditRichEditBox.Bold = Tree.Ternary.No;
             this.lexEditRichEditBox.DetectUrls = false;
+            this.lexEditRichEditBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lexEditRichEditBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lexEditRichEditBox.Italic = Tree.Ternary.No;
-            this.lexEditRichEditBox.Location = new System.Drawing.Point(3, 18);
+            this.lexEditRichEditBox.Location = new System.Drawing.Point(3, 3);
             this.lexEditRichEditBox.MaxLength = 1024;
             this.lexEditRichEditBox.Name = "lexEditRichEditBox";
             this.lexEditRichEditBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.lexEditRichEditBox.Size = new System.Drawing.Size(136, 40);
+            this.lexEditRichEditBox.Size = new System.Drawing.Size(123, 33);
             this.lexEditRichEditBox.Subscript = Tree.Ternary.No;
             this.lexEditRichEditBox.Superscript = Tree.Ternary.No;
             this.lexEditRichEditBox.TabIndex = 0;
@@ -325,7 +344,7 @@ namespace Tree
             this.createParentButton,
             this.deleteButton});
             this.nodeToolStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            this.nodeToolStrip.Location = new System.Drawing.Point(3, 16);
+            this.nodeToolStrip.Location = new System.Drawing.Point(3, 22);
             this.nodeToolStrip.Name = "nodeToolStrip";
             this.nodeToolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.nodeToolStrip.Size = new System.Drawing.Size(169, 31);
@@ -378,10 +397,10 @@ namespace Tree
             // tracePane
             // 
             this.tracePane.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tracePane.Location = new System.Drawing.Point(3, 18);
-            this.tracePane.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tracePane.Location = new System.Drawing.Point(3, 22);
+            this.tracePane.Margin = new System.Windows.Forms.Padding(2);
             this.tracePane.Name = "tracePane";
-            this.tracePane.Size = new System.Drawing.Size(169, 79);
+            this.tracePane.Size = new System.Drawing.Size(169, 75);
             this.tracePane.TabIndex = 0;
             this.tracePane.OnTraceModified += new System.EventHandler(this.tracePane_OnTraceModified);
             // 
@@ -393,6 +412,7 @@ namespace Tree
             this.tableLayoutPanel.ResumeLayout(false);
             this.labelEditGroupBox.ResumeLayout(false);
             this.lexEditGroupBox.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.nodeOperationsGroupBox.ResumeLayout(false);
             this.nodeOperationsGroupBox.PerformLayout();
             this.nodeToolStrip.ResumeLayout(false);
@@ -522,6 +542,17 @@ namespace Tree
             m_stv.UpdateEverything(true);
             tracePane.RefreshData();
         }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lexEditGroupBox_Enter(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 }

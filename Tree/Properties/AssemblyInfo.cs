@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Tree")]
-[assembly: AssemblyDescription("Contact the authors:\r\nJeff Epstein jepst79@gmail.com\r\nEdmund O'Neill esoneill@gmail.com")]
+[assembly: AssemblyDescription("Contact the authors:\r\nJeff Epstein jepst79@gmail.com")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("STE Development Team")]
 [assembly: AssemblyProduct("Syntax Tree Editor")]
-[assembly: AssemblyCopyright("Copyright 2009 Jeff Epstein")]
+[assembly: AssemblyCopyright("Copyright 2009,2017 Jeff Epstein")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("0.9.0.2")]
-[assembly: AssemblyFileVersion("0.9.0.2")]
+[assembly: AssemblyVersion("0.9.0.3")]
+[assembly: AssemblyFileVersion("0.9.0.3")]

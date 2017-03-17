@@ -124,7 +124,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "Version" = "8:2.0.50727"
+                "FrameworkVersion" = "8:.NETFramework,Version=v2.0"
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=9832"
                 }
@@ -256,14 +256,16 @@
         "MsiBootstrapper"
         {
         "LangId" = "3:1033"
+        "RequiresElevation" = "11:FALSE"
         }
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Syntax Tree Editor"
         "ProductCode" = "8:{EC46DA1A-BC05-44A9-9E02-E3CA965F530E}"
-        "PackageCode" = "8:{64C0B09C-9F3C-49BD-9040-76F259B469C1}"
+        "PackageCode" = "8:{0AD3619D-23F6-4EE6-8618-97C16DE9F7C7}"
         "UpgradeCode" = "8:{E9F49AFE-7BCD-44BD-BDF1-9DB7F2A2A83B}"
+        "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:FALSE"
