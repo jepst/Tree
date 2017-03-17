@@ -1,0 +1,89 @@
+latest
+	better installer
+	shortcut keys: ctrl+1,2,3,4,5,6,7 for formatting
+	ctrl-shift-i and ctrl-i both add new node
+	arrows in svg
+	smarter trace arrows
+todo
+	add icons, improve installer text (license, how to run, maybe autorun button)
+	figure out how to add high color icons?
+
+	
+via beta testers
+	insert two nodes at a time (no)
+	insert sister button (probably not)
+	save user preferences (maybe)
+	stay on top (no)
+
+serious bugs
+	when scanning tree to see how deep trace should drop, maybe we should look at BranchDimensions.Height instead of altitude, if BranchDimensions has been calculated by that point
+	reconsider how traces are VERTICALLY spaced: associate with level of horizontal rather than with least common ancestor
+	let user manually customize position/size of traces?
+	recognize different kinds of arrows, somehow
+	avoid firing two TreeSelection events when adding a node: once in UpdateTreeData, once in SelectByNode
+	maybe draw ALL tree text before decorations/traces so that corners of text items don't cut off lines; it may be good to modify PaintElement to control the order that such things are drawn; or draw with transparency from bmp via System.Drawing.Imaging.ImageAttributes
+	WHY AM I LOSING CHARACTERS WHEN I ITALICIZE!!!! it seems to need a non-italic printing character a the end of each string. Oy. Tab works, even if it's italic
+
+
+optimization
+	Do less comprehensive update on DoCreateTrace; in fact, search for all UpdateEverything and decide if it can be Partial-ized
+	find a way to avoid recreatine Elem hierarchy when node is added or removed? A ReCreatePartial(Elem) method should call ScanWorker on its children; in any case, all traces must be updated
+	fixup sloppy Walker code, where noted
+	re-implement m_selected, possibly as an RTree. We could speed up Contains a lot just by sorting or hashing. also we should make an RTree of all tree elements so we can do hit-testing efficiently
+
+
+
+gui tweaks
+	collapse branches into triangles?
+	possibly default to round endcaps?
+	show RTB highlight even when not focussed?
+	add dropdown menu interface for traces
+	rathar than UpdateEverything(true) after every keypress, set a timer, and only update after a second w/o a keypress
+	move to nearby node on delete
+	this.DoubleBuffered=true?
+	group deletes
+	maximizing the window causes the text in zoomToolStripComboBox to get selected
+	set SyntaxTree hierarchy to fire events when modified?
+	consider kicking off slow tasks (primarily full redraws, GetBitmap) to a worker thread and showing a progress bar in the UI; alternatively, only draw elements that appear in the update region on each OnPaint (see PaintEventARgs.ClipRect; another alternatively, find a way to call StdCalc early, and not every OnPaint
+	can RichTextBox2.FormatRange be made more efficient by calling SendMessage without allocating CoTask memory?
+	fix rtf parser to skip code marked by \bin tag
+	fix UpdateTreeData so as to not lose m_selected
+	??group format operations apply to LexicalText iff EVERY SELECTED ITEM has lexical text;  color/font operations apply to lex if lex exists
+	richedit research: prevent paste of non-text
+	autoscroll to newly created node
+	proper rtf->xml/html converter for improved SVG output
+	self-sign certificate
+
+
+
+new features, version 2.0
+	an option to drop all lexical items to bottom of tree, possibly like this: http://en.wikipedia.org/wiki/File:Cgisf-tgg.svg
+	edit indivual lines betweennodes
+	drop RichEditBox dependency: display and store formatted text manually
+	movie playback
+
+
+from zofie,edmund:
+	sample trees
+	documentation
+
+
+credit to:
+	olga ward?
+
+http://www.csharphelp.com/archives/archive189.html
+http://blogs.pingpoet.com/overflow/archive/2005/05/20/1995.aspx
+
+original logo image stolen from here: http://cordis.europa.eu/esprit/icons/tree.jpg
+
+
+
+competitors
+http://www.cascadilla.com/arboreal.html
+http://www.ling.upenn.edu/advice/latex/qtree/
+http://www.ece.ubc.ca/~donaldd/treeform.htm
+http://ironcreek.net/phpsyntaxtree/
+http://weston.ruter.net/projects/syntax-tree-drawer/
+http://ltc.sourceforge.net/
+http://lra.netfirms.com/Trees.htm
+http://www.nyu.edu/pages/linguistics/workbook/lehner/
