@@ -1,0 +1,27 @@
+<!--#include virtual="header.html" -->
+<p>
+Syntax Tree Editor should work on any reasonably modern Windows operating 
+system, such as XP, Vista, and 7. Older versions of Windows (95, 98, ME, 
+2000) are not supported. Other operating systems, such as Linux and MacOS, 
+are also not supported.</p> 
+
+<p><a href="redir.cgi?w=setup.exe">Click here to download</a> the 
+automatic installation package. The current version is 0.9.0.1, and is a 
+beta 
+version.</p>
+
+<p>If you prefer, you can download the <a 
+href="redir.cgi?w=TreeInstaller.msi">MSI installer</a>.
+
+<p>You can also download some <a href="samples.zip">sample 
+diagrams</a> that demonstrate the power of Syntax Tree Editor.</p>
+<p>Syntax Tree Editor is built on the <a 
+href="http://www.microsoft.com/NET/">.NET Framework</a>. If you 
+don't already have it on your system, you will be asked to install 
+it.</p>
+
+
+<p>If you have any problems getting Syntax Tree Editor work, we'd like <a 
+href="contact.shtml">to hear about it</a>.</p>
+<!--#include virtual="footer.html" -->
+

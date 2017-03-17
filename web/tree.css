@@ -1,0 +1,59 @@
+body 
+{
+color:gray; background:black;
+margin-top:20%;
+margin-left:20%; 
+margin-right:30%;
+border:none;
+font-family: sans-serif
+}
+.content
+{
+text-indent:20px;
+background:#0c0c0c;
+padding:10px;
+color:gray;
+}
+.titlebar
+{
+color:darkred;
+position:absolute;
+top:5%;
+left:30%;
+font-style:italic;
+font-size: 200%;
+}
+.leftbar
+{
+margin: 0 0 0 0;
+height:100%;
+border-right:solid 1px darkgray;
+position:fixed;
+left:0px;
+top:0px;
+padding-right: 1%;
+}
+.menu
+{
+color:red;
+position:relative;
+top:10%;
+left:5%;
+text-align:right;
+}
+a
+{
+text-decoration:none;
+}
+a:link,a:visited
+{
+color:white;
+}
+.menu a
+{
+text-decoration:none;
+}
+.menu a:link,.menu a:visited
+{
+color:brown;
+}

@@ -1,0 +1,17 @@
+<!--#include virtual="header.html" -->
+<p>
+Syntax Tree Editor is primarily the work of Jeff Epstein and Edmund 
+O'Neill (<a 
+href="mailto:esoneill@gmail.com">mail</a>, <a 
+href="http://www.edmundoneill.com/">web</a>). We especially 
+enjoy hearing 
+about how you use it and what you've done with it, but please don't 
+hesitate to send us criticisms either: if the program doesn't live up to 
+your expectations, we'd like to improve it.
+</p>
+<p>
+The current release of Syntax Tree Editor also includes a built-in 
+feedback function under the Help menu.
+</p>
+<!--#include virtual="footer.html" -->
+

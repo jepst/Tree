@@ -1,0 +1,22 @@
+<!--#include virtual="header.html" -->
+<p>
+Welcome to the home page for Syntax Tree Editor, a utility for
+drawing <a href="http://en.wikipedia.org/wiki/Parse_tree">syntax tree 
+diagrams</a>. 
+</p>
+
+<p>
+A syntax tree diagram is a visual representation of the structure
+of a sentence. The people who most often need to draw these diagrams
+are linguists, and the Syntax Tree Editor is designed with the
+needs of linguists in mind.
+</p>
+
+<p>
+Syntax Tree Editor can be freely <a href="download.shtml">downloaded</a>
+and should work on any computer running a reasonably recent version
+of the <a href="http://www.microsoft.com/windows/">Windows operating 
+system</a> (XP, Vista, 7).
+</p>
+<!--#include virtual="footer.html" -->
+

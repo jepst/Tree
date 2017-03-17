@@ -1,0 +1,45 @@
+<!--#include virtual="header.html" -->
+<p>
+Syntax Tree Editor isn't the only program that you can use
+to create syntax tree diagrams. Here are some other products
+that may meet your needs.
+</p>
+<ul>
+<li><a href="http://www.ece.ubc.ca/~donaldd/treeform.htm">TreeForm</a> is 
+a full-featured, graphical syntax tree diagram editor. It's written in 
+<a href="http://www.java.com/">Java</a>, and so should run on just about 
+any operating system.
+
+<li><a href="http://www.sittac.com/">Tree Builder</a> is another 
+Java-based solution that also features built-in grammar checking.
+
+<li><a href="http://ltc.sourceforge.net/">Linguistic Tree Constructor</a> 
+is a graphical tool to interactively generate syntax tree diagrams.
+
+<li><a href="http://lra.netfirms.com/Trees.htm">Trees</a> is a another 
+graphical, interactive tool, with particularly strong linguistic features.
+
+<li><a href="http://www.cascadilla.com/arboreal.html">Arboreal</a> is not 
+a program, but a font that contains syntax tree diagram components as 
+characters.
+
+<li><a href="http://www.ling.upenn.edu/advice/latex/qtree/">Qtree</a> is a 
+package for <a href="http://www.latex-project.org/">LaTeX</a>.
+
+<li><a href="http://ironcreek.net/phpsyntaxtree/">phpSyntaxTree</a> is a 
+web-based solution that generates syntax tree diagrams based on 
+bracketed textual input.
+
+<li><a href="http://weston.ruter.net/projects/syntax-tree-drawer/">Syntax 
+Tree Drawer</a> is a tool to generate <a 
+href="http://www.w3.org/Graphics/SVG/">SVG</a> files for syntax tree 
+diagrams.
+
+<li><a 
+href="http://www.nyu.edu/pages/linguistics/workbook/lehner/">Lehner's 
+Prolog Tree Drawing Program</a> generates syntax tree diagrams from <a 
+href="http://en.wikipedia.org/wiki/Prolog">Prolog</a> input.
+
+</ul>
+<!--#include virtual="footer.html" -->
+
