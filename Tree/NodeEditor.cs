@@ -282,11 +282,12 @@ namespace Tree
             this.tableLayoutPanel1.Controls.Add(this.lexEditRichEditBox, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 22);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 18);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(169, 39);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(169, 43);
             this.tableLayoutPanel1.TabIndex = 2;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
@@ -297,7 +298,7 @@ namespace Tree
             this.triangleCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.triangleCheckBox.Location = new System.Drawing.Point(132, 3);
             this.triangleCheckBox.Name = "triangleCheckBox";
-            this.triangleCheckBox.Size = new System.Drawing.Size(34, 33);
+            this.triangleCheckBox.Size = new System.Drawing.Size(34, 37);
             this.triangleCheckBox.TabIndex = 2;
             this.triangleCheckBox.Text = "/\\";
             this.triangleCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -315,7 +316,7 @@ namespace Tree
             this.lexEditRichEditBox.MaxLength = 1024;
             this.lexEditRichEditBox.Name = "lexEditRichEditBox";
             this.lexEditRichEditBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.lexEditRichEditBox.Size = new System.Drawing.Size(123, 33);
+            this.lexEditRichEditBox.Size = new System.Drawing.Size(123, 37);
             this.lexEditRichEditBox.Subscript = Tree.Ternary.No;
             this.lexEditRichEditBox.Superscript = Tree.Ternary.No;
             this.lexEditRichEditBox.TabIndex = 0;
