@@ -8,6 +8,10 @@ todo
 	add icons, improve installer text (license, how to run, maybe autorun button)
 	figure out how to add high color icons?
 
+Vincent's suggestions:
+	Allow an easy high-resolution export mode. Currently one needs to set the View to one thousand percent, then export, in order to make high-resolution, large images
+	Smarter or adjustable trajectories of traces
+	Consider triangles to be part of the lower layer. That is, triangle should be an option BETWEEN a parent and a (single) child node, rather than an option ON a single node.
 	
 via beta testers
 	insert two nodes at a time (no)
